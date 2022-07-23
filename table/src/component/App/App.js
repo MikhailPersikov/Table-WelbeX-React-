@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <Search/>
+      <Search posts={posts}/>
       <Table posts={currentPosts} loading={loading}/>
       <Pagination 
         postsPerPage={postsPerPage} 

@@ -1,16 +1,22 @@
-import React from 'react';
+import {useState, useMemo, useDeferredValue} from 'react';
 
 import './Search.scss'
 
-const Search = ({ onChange }) => {
-  // const search = (data) => {
-  //       return data.filter((item) =>
-  //         keys.some((key) => item[key].toLowerCase().includes(query))
-  //       );
-  //     };
+const Search = ({posts}) => {
+  // const sliePosts = posts.slice(0,10);
 
-  const handleInputChange = (e) => {
-    console.log(e.target.value)
+  const [value, setValue] = useState('');
+  const [data] = useState(posts);
+  const defferedValue = useDeferredValue(value);
+
+  //Нужно придумать как фильтровать по таблице. 
+  const searchName = useMemo(() => {
+    return data.filter(item => item.name.toLowerCase().includes(defferedValue));
+  })
+
+  const onValueChange = (e) => {
+    setValue(e.target.value)
+    console.log(value)
   }
 
   return (
@@ -19,7 +25,12 @@ const Search = ({ onChange }) => {
         className="table-input"
         type="text"
         placeholder='Поиск...'
-        onChange={handleInputChange} />
+        onChange={onValueChange} />
+        {/* {searchName.map(name => (
+          <div className="test" key={name.id}>
+            <h3>{name.name}</h3>
+          </div>
+        ))} */}
       <select name="" id="">
         <option value="name">Название</option>
         <option value="quantity">Количество</option>
