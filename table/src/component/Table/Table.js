@@ -1,13 +1,16 @@
 import './Table.scss';
+import { useMemo } from 'react';
 
-const Table = ({posts, loading}) => {
+const Table = ({posts, loading, names}) => {
   
-  const today = new Date().toISOString().slice(0, 10)
- 
+  const today = new Date().toISOString().slice(0, 10);
+
   if(loading) {
     return <h2>Loading...</h2>
   }
- 
+
+  // const arr = (names.length === 0) ? posts : names;
+
   const renderList = () => {
     return (
       posts.map(data => (
