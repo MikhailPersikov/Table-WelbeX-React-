@@ -5,7 +5,25 @@ const Pagination = ({ postsPerPage, totalPosts, paginate}) => {
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
+  }
 
+  let pageIncrementEllipses = null;
+  if(pages.length > maxPageLimit){
+      pageIncrementEllipses = <li onClick={handleNextClick}>&hellip;</li>
+  }
+  let pageDecremenEllipses = null;
+  if(minPageLimit >=1){
+      pageDecremenEllipses = <li onClick={handlePrevClick}>&hellip;</li> 
+  }
+
+  const renderData = (data)=>{
+    return(
+        <ul>
+            {data.map((d)=> 
+            <li key={d['_id']}> The passenger having id {d['_id'].slice(d['_id'].length-5)} using {d.airline[0].name} airlines</li>)
+            }
+        </ul>
+    )
   }
 
   return (

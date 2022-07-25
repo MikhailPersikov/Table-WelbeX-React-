@@ -10,10 +10,15 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [currentPage, setcurrentPage] = useState(1);
   const [filtredPosts, setFiltredPosts] = useState([]);
+  const [maxPageLimit, setMaxPageLimit] = useState(10);
+  const [minPageLimit, setMinPageLimit] = useState(1);
   
   //Если хочешь изменить количество лишек на странице поменяй значение в postsPerPage
   //example const [postsPerPage] = useState(20); (будет 20 лишек)
   const [postsPerPage] = useState(10);
+  // const [anotherState] = useState(postsPerPage); 10
+  
+  // const [another]
 
   const filtredNames = (value) => {
     const newPosts = posts.filter(item => item.name.toLowerCase().includes(value.toLowerCase()));
